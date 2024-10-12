@@ -1,0 +1,456 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage[left=20mm, right=20mm]{geometry}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage[hyphens]{url}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\a}{\land}
+\renewcommand{\o}{\lor}
+\newcommand{\n}{\neg}
+\renewcommand{\i}{\implies}
+\newcommand{\p}[1]{\begin{pmatrix} #1\end{pmatrix}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\renewcommand\arraystretch{2}
+
+\title{MATH1064 Assignment 1}
+\author{SID: 530328265 - Tutorial: 16.00 TUE}
+\date{Due Date: Thursday 2023/8/24}
+
+\begin{document}
+	\maketitle
+	\section*{1. }
+
+	\begin{flalign*}
+		&1 \quad p \to q  &\text{(Premise)}\\
+		&2 \quad (r \o s) \to (p \a \n q)  &\text{(Premise)}\\
+		&3 \quad \n p \o q &\text{(Logically equivalent to (1))}\\
+		&4 \quad \n(\n(\n p \o q)) &\text{(From (3) by double negative)}\\
+		&5 \quad \n(p \a \n q) &\text{(From (4) by De Morgan's law)}\\
+		&6 \quad \n(r \o s) &\text{(From (2) and (5) by modus tollens)}\\
+		&7 \quad \n r \a \n s &\text{(From (6) by De Morgan's law)}\\
+		\hline
+		&c \quad \therefore \n r &\text{(From (7) by simplification)}\\
+	\end{flalign*}
+	\pagebreak
+	\section*{2.}
+	The table below is the truth table for $(p \a \n q \a \n r) \o \n(p \o q) $ \\ 
+	\begin{center}
+		\begin{tabular}{| c | c | c || c | c | c || c |}
+			\hline 
+			$ p $ & $ q $ & $ r $ & $ (p \a \n q \a \n r) $ & $ p \o q $ & $ \n(p \o q) $ & $(p \a \n q \a \n r) \o \n(p \o q) $ \\
+			\hline
+			T & T & T & F & T & F & F\\
+			\hline
+			T & T & F & F & T & F & F\\
+			\hline
+			T & F & T & F & T & F & F\\
+			\hline
+			T & F & F & T & T & F & T\\
+			\hline 
+			F & T & T & F & T & F & F\\
+			\hline
+			F & T & F & F & T & F & F\\
+			\hline
+			F & F & T & F & F & T & T\\
+			\hline 
+			F & F & F & F & F & T & T\\
+			\hline
+		\end{tabular}
+	\end{center}
+	The table below is the truth table for $(r \to \n(p \a \n q)) \a \n q $
+	\begin{center}
+		\begin{tabular}{| c | c | c || c | c | c || c | }
+			\hline 
+			$ p $ & $ q $ & $ r $ & $ p \a \n q $ & $ \n(p \a \n q) $ & $(r \to  \n(p \a \n q))$ & $ (r \to \n(p \a \n q)) \a \n q $\\
+			\hline
+			T & T & T  & F & T  & T & F\\
+			\hline
+			T & T & F  & F & T  & T & F\\
+			\hline
+			T & F & T  & T & F  & F & F\\
+			\hline
+			T & F & F  & T & F  & T & T\\
+			\hline 
+			F & T & T  & F & T  & T & F\\
+			\hline
+			F & T & F  & F & T  & T & F\\
+			\hline
+			F & F & T  & F & T  & T & T\\
+			\hline 
+			F & F & F  & F & T  & T & T\\
+			\hline
+		\end{tabular}
+	\end{center}
+	From the truth tables, We can see that two compound propositions have the identical truth values for every possible combination of truth values for their proposition variables. Thus, we conclude that two compound proposition $(p \a \n q \a \n r) \o \n(p \o q) $ and $(r \to \n(p \a \n q)) \a \n q $ are logically equivalent.
+
+
+	\section*{3. }
+	\begin{enumerate}[label=({\alph*})]
+		\item We have: $ \forall k \in  \mathbb{Z} $, $ k \geq 0 \o k < 0 $.
+		
+		Hence, there are two cases.
+		 In case: $ k \geq 0$, then $ Q(k) $ is True. Thus, If $ k \geq 0 $, The statement below is true
+		 \begin{equation}
+			Q(k) \o Q(\n k) 
+		 \end{equation} 
+		  Another case: $ k < 0$ so $-k > 0 $, then $Q(-k)$ is True. Thus, If $k < 0$, the statement below is true.
+		  \begin{equation}
+		   	Q(k) \o Q(\n k) 
+		  \end{equation}
+		 In conclusion,  $\forall k \in  \mathbb{Z}$, $ Q(k)$ $\o$ $Q(\n k)$ is True. \(\blacksquare\)
+		
+		 The negation of $\forall k \in  \mathbb{Z}$, $ Q(k)$ $\o$ $Q(\n k)$ is:
+		 $$\exists k \in \mathbb{Z}: \n Q(k) \a \n Q(-k). $$
+
+	
+
+		\item We have: $ \forall k_{1}, k_{2} \in \mathbb{Z}$,  $ k \geq 0 \o k < 0 $.
+		
+		Hence, there are two case.
+
+		In case: $k_{1}\o k_{2} < 0$, $Q(k_{1}) \a Q(k_{2})$ is False so we conclude in this case that the statement below is true.
+		\begin{equation}
+			Q(k_{1}) \a Q(k_{2}) \to Q(k_{1} \cdot k_{2}) 
+		\end{equation}
+		 
+		
+		This is because the conditional is always
+		true since its hypothesis is always false, which is called vacuous truth
+		
+	 	In another case: $k_{1} \geq 0 \a k_{2} \geq 0, Q(k_{1}) \a Q(k_{2})$ is true.
+		
+		We have $ k_{1} \geq 0$ so:
+		\begin{equation}
+			k_{1} + k_{1} \geq 0  \quad \label{3:b:1}
+		\end{equation}
+		From \eqref{3:b:1}, we have:
+		\begin{equation}
+			k_{1} +k_{1} + .... +k_{1}\geq 0. \quad \label{3:b:2}
+		\end{equation}
+		Then:
+		\begin{equation}
+		  n(k_{1}) \geq 0. \quad \label{3:b:3}
+		\end{equation}
+		
+		with n is the number of term $k_{1}$, $n \in \mathbb{N}$
+		
+		Let take $n = k_{2} (k_2 \in \mathbb{N})$. From \eqref{3:b:3}, we have:
+		 $$(k_{2} \cdot k_{1}) \geq 0.$$ 
+		
+		Thus,  $k_{1} \geq 0  \a  k_{2} \geq 0  \to (k_{2} \cdot k_{1}) \geq 0$ is true.
+
+		Therefore, We conclude that, the statement below is true.
+		\begin{equation}
+		  \forall k_{1}, k_{2} \in \mathbb{N}, Q(k_{1}) \a Q(k_{2}) \to Q(k_{1} \cdot k_{2}) 
+		\end{equation}
+
+		In conclusion, We conclude that, the statement below is true
+		\begin{equation}
+		  \forall k_{1}, k_{2} \in \mathbb{Z},  Q(k_{1}) \a Q(k_{2}) \to Q(k_{1} \cdot k_{2}) \quad \blacksquare 
+		\end{equation}
+
+
+		\item	Counter example: Let $ k_{1} = -1 $ and $ k_{2} = -2, $ so $Q(k_{1})$ is false and $Q(k_{2})$ is false. 
+	
+		Thus, the statement below is false:
+		\begin{equation}
+			Q(k_{1}) \a Q(k_{2}) \label{3:c:1}
+		\end{equation}
+
+	
+		Then $k_{1} \times k_{2} = -1 \times (-2) = 3 > 0 $ so, the statement below is true:
+		\begin{equation}
+		  Q(k_{1} \cdot k_{2}) \label{3:c:2}
+		\end{equation}
+	
+		From \eqref{3:c:1} and \eqref{3:c:2}, we have $k_{1} = -1 $ and $ k_{2} = -2$, $ Q(k_{1} \cdot k_{2})$ $ \to $ $Q(k_{1}) \a Q(k_{2})$ is false. 
+		 
+		Thus, $\exists k_{1}, k_{2} \in \mathbb{Z}$:  $ \n(Q(k_{1} \cdot k_{2})$ $ \to $ $Q(k_{1}) \a Q(k_{2}))$.
+	
+		 We have ( $\exists k_{1}, k_{2} \in \mathbb{Z}$:  $ \n Q(k_{1} \cdot k_{2})$ $ \to $ $Q(k_{1}) \a Q(k_{2}) )$ is the negation of:
+
+		  $$ \forall k_{1}, k_{2} \in \mathbb{Z}:   Q(k_{1} \cdot k_{2})  \to Q(k_{1}) \a Q(k_{2})$$.
+	
+		Therefore, we conclude that the statement  $ \forall k_{1}, k_{2} \in \mathbb{Z}$:  $ Q(k_{1} \cdot k_{2})$ $ \to $ $Q(k_{1}) \a Q(k_{2})$ is false. \(\quad \blacksquare\)
+
+		\item In case: $R({k_1}) $ is false or $S({k_2})$ is false so $R({k_1}) \a  S({k_2}) $ is false.
+	
+		Therefore, we conclude in this case that statement below is true:
+		
+		$$R({k_1}) \a  S({k_2}) \to  R(3{k_1} + 2{k_2}) \a S(3{k_1} + 2{k_2})$$  
+		This is because the conditional is always true since its hyphothesis is always false, which is a vacuous truth.
+	
+		In another case: $R({k_1})$ is true and $ S({k_2})$ is true so $R({k_1}) \a  S({k_2}) $ is true. 
+
+		Because $k_1 $ is even therefore, 
+		
+		\begin{equation}
+			k_1  = 2n \quad (n \in \mathbb{Z}) \label{3:d:1}	
+		\end{equation}
+	
+		Because $k_2$ is divisible by 3, therefore
+		
+		\begin{equation}
+			k_2 = 	3l \quad (l \in \Z) \label{3:d:2}
+		\end{equation}
+		
+		Because $n, l \in \mathbb{Z}$, \((n + l)\) \(\in \mathbb{Z}\). Thus, the product of \((n + l)\) with any integer is also an integer
+
+		From \eqref{3:d:1} and \eqref{3:d:2}, we have: 
+		\[3k_1 + 2k_2 = (3 \times 2 \times n + 2 \times 3 \times l) = 2 \times 3 \times (n+l)\]
+		
+
+		Oserve that \(2 \times 3 \times(n + l)\) is divisible by 3, because the quotient of it is
+		 \[2(n + l) \in \mathbb{Z}\]
+		
+		Therefore, this statement belows is true:
+		 $$ S(3k_{1} + 2k_{2})$$ 
+
+		Furthermore \(2 \times 3 \times(n + l)\) is an even number, because \(3(n + l) \in \mathbb{Z}\)
+
+		Therefore, this statement belows is true
+		 $$ R(3k_{1} + 2k_{2})$$ 
+
+		From (3) and (4), we have:
+		
+		 $ R(3k_{1} + 2k_{2})$ \(\a\) $ S(3k_{1} + 2k_{2})$ is true.
+
+		Thus, we conclude that 
+		\[\forall k_1, k_2\in \Z, R(k_1) \land S(k_2) \to R(3k_1 + 2k_2) \land S(3k_1 + 2k_2) \quad \blacksquare\] 
+
+		\item In case: $R({k_1}) $ is false and $S({k_2})$ is false so $R({k_1}) \o  S({k_2}) $ is false.
+	
+		Therefore, we conclude in this case that $R({k_1}) \o  S({k_2})$ $\to$ $ R(3{k_1} + 2{k_2}) \o S(3{k_1} + 2{k_2})$ is true. This is because the conditional is always true since its hyphothesis is always false, which is a vacuous truth. 
+
+		In other case: \(R({k_1})\) is true.
+		We have: 
+		\[{k_1} = 2n \quad (n \in \mathbb{Z})\]
+		Then:
+		
+		
+		\begin{equation}
+				(3{k_1} + 2{k_2}) = 3 \times 2 \times n + 2 \times k_2 = 2 \times (3n + {k_2})   \label{3:d:5}
+		\end{equation}
+
+		From \eqref{3:d:5}, we have: \( 2 \times (3n + {k_2})\) is even because $(3n + {k_2}) \in \mathbb{Z}$
+
+		Thus, \(R(3{k_1} + 2{k_2})\) is true so the statement below is true.
+		$$ R(3{k_1} + 2{k_2}) \o S(3{k_1} + 2{k_2})$$ 
+		Therefore, in this case we conclude that $R({k_1}) \o  S({k_2})$ $\to$ $ R(3{k_1} + 2{k_2}) \o S(3{k_1} + 2{k_2})$
+
+		Another case is that: $S({k_2})$ is true.
+		We have:
+		\[{k_2} = 3l \quad (l \in \mathbb{Z})\]
+		Then:
+		\begin{equation}
+			(3{k_1} + 2{k_2}) = 3 \times{k_1} + 2 \times 3 \times l = 3 \times ({k_1} + 2l)   \label{3:d:6}
+		\end{equation}
+		From \eqref{3:d:6}, we have: $ 3 \times ({k_1} + 2l) $  is even because $({k_1} + 2l) \in \mathbb{Z}$
+
+		Thus, \(S(3{k_1} + 2{k_2})\) is true so the statement below is true.
+		$$ R(3{k_1} + 2{k_2}) \o S(3{k_1} + 2{k_2})$$ 
+		Therefore, in this case we conclude that $R({k_1}) \o  S({k_2})$ $\to$ $ R(3{k_1} + 2{k_2}) \o S(3{k_1} + 2{k_2})$
+
+		In the case that \(R({k_1})\) is true and $S({k_2})$ is true at the same time so \(R(3{k_1} + 2{k_2})\) is true and  \(S(3{k_1} + 2{k_2})\) is true at the same time.
+
+		Thus \(R(3{k_1} + 2{k_2})\) \(\o\) \(S(3{k_1} + 2{k_2})\) is true
+
+		Therefore, in this case, we conclude that: $R({k_1}) \o  S({k_2})$ $\to$ $ R(3{k_1} + 2{k_2}) \o S(3{k_1} + 2{k_2}) \quad \blacksquare$
+
+		\item Assume that:
+				$$ \exists {k_1}, {k_2} \in \mathbb{Z}: R(3{k_1} + 2{k_2}) \a \n R(k_1)$$
+			So: $ \n R({k_1})$ is true so ${k_1}$ is not even.
+			
+			Then \({k_1} = 2n + 1\) ($ n  \in \mathbb{Z}$)
+
+			Furthermore: \( R(3{k_1} + 2{k_2})\) is true.
+
+			Thus, we have the statment below is true
+			\begin{equation}
+				R(3(2n + 1) + 2{k_2}) = R(3 \times 2 \times n + 3 + 2{k_2}) = R( 2(3n + 1 + {k_2}) + 1) \label{3:f:1}
+			\end{equation}
+			Let \(w = 3n + 1 + k_2\) so \(w \in \mathbb{Z}\) because \(3n + 1 + k_2 \in \mathbb{Z}\)
+
+			Then:  $2(3n + 1 + {k_2}) + 1) $ = \(2w + 1\)
+
+			From  \eqref{3:f:1} and \(2w + 1\) is not even.
+			We conclude that there is a contradiction.
+
+			Thus, this statement below is false:
+			\begin{equation}
+				\exists {k_1}, {k_2} \in \mathbb{Z}, R(3{k_1} + 2{k_2}) \a \n(R({k_1})) \quad \blacksquare
+			\end{equation}
+
+			The negation of \(\exists {k_1}, {k_2} \in \mathbb{Z}: R(3{k_1} + 2{k_2})\a \n R(k_1) \) is:
+			\begin{equation}
+				\forall {k_1}, {k_2} \in \mathbb{Z}, \n R(3{k_1} + 2{k_2}) \o R({k_1})
+			\end{equation}
+
+		\item The statement "$ \exists k \in \mathbb{N}: R(k) \a S(k)$ is true, and for all $l > k$, $\n (R(l) \a S(l))$ is true" is false.\\
+		
+		For all arbitrary values of k, since \(2\) divides \(k\) and 3 divides \(k\), that means we can express \(k\) as 
+		\[k = 2m = 3n \text{ For some } m, n \in \Z\]
+		Let
+		\[l = k + 6\]
+		
+		Consider 
+		\begin{align*}
+			\frac{l}{2} &= \frac{k + 6}{2}\\
+			&= \frac{k}{2} + \frac{6}{2}\\
+			&= m + 3 \in \Z
+		\end{align*}
+		Hence \(R(l)\) is true and,
+		\begin{align*}
+			\frac{l}{3} &= \frac{k + 6}{3}\\
+			&= \frac{k}{3} + \frac{6}{3}\\
+			&= n + 2 \in \Z
+		\end{align*}
+		\(S(l)\) is also true
+
+		Furthermore, it is trivial to see that 
+		\[l > k\]
+		
+		Therefore, the statement "There exists a $k \in \mathbb{N}: R(k) \a S(k)$ is true, and for all $l > k$, $\n (R(l) \a S(l)$ is true" is false.\(\quad \blacksquare\)\\
+	\section*{4.}
+	\begin{figure}[ht]
+		\centering
+			%  \includegraphics[width=0.4\textwidth]{Screenshot 2023-08-25 024257.png} 
+			 \caption{Ex: 4}
+			 \label{Ex:4}
+	\end{figure}
+
+	Firstly, We divide the circle into 4 equal sectors by two perpendicular diameters. Notice that there are 4 equal sectors and 5 points in the circle, using the pigeonhole principle, we conclude that there always exists at least one sector that contains two points. Figure \ref{Ex:4} describes how the circle is divided.
+
+	Assume \({P_j}\) and \({P_k}\) are the points in the same sector.
+
+	Let \(r\) be the radius of the circle.
+
+	Label the two diameters AB and CD.
+
+	Let O be the centre of this circle. 
+
+	Let \(\alpha\) be the \(\angle{P_jOP_k}\)
+	\pagebreak
+	Using the law of cosines, distance between \({P_j}\) and \({P_k}\) is
+	\begin{equation}
+		d_{P_j,P_k} = \sqrt{(O{P_j})^2 + (O{P_k})^2 - 2 \times O{P_j} \times O{P_k}\times \cos(\alpha)}) \label{4:1:1}
+	\end{equation}
+	
+
+	From \eqref{4:1:1} $d_{P_j,P_k}$  max is when:
+	$$(O{P_j})^2 + (O{P_k})^2 \text{ is max } \a  (2 \times O{P_j} \times O{P_k}\times \cos(\alpha)) \text{ is min}$$ 
+	
+	We can see that \({P_j}\) and \({P_k}\) in the same area. Therefore,
+
+	\begin{align}
+		&0^\circ \leq \alpha \leq 90^\circ \nonumber\\
+		\implies &cos(0^\circ) \geq \alpha \geq (90^\circ) \label{4:1:2}	
+	\end{align}
+
+	From \eqref{4:1:1} and \eqref{4:1:2}, we have:
+	\begin{equation}
+		2 \times O{P_j} \times O{P_k}\times \cos(0^\circ) \geq 2 \times O{P_j} \times O{P_k}\times \cos(\alpha) \geq 2 \times O{P_j} \times O{P_k}\times \cos(90^\circ)
+	\end{equation}
+	Thus,  
+	\[2 \times O{P_j} \times O{P_k}\times \cos(\alpha) \geq 2 \times O{P_j} \times O{P_k}\times \cos(90^\circ)\]
+	Equality occurs when \(\alpha\) = $90^\circ$
+	Furthermore, from the question, we know that \(P_j\) and \(P_k\) must be within the circle (or the edge), hence the following inequalities hold
+	\begin{align}
+		OP_j &\leq r \label{4:1:3}\\ 
+		OP_k &\leq r \label{4:1:4}
+	\end{align}
+
+	From \eqref{4:1:1}, \eqref{4:1:2}, \eqref{4:1:3} and \eqref{4:1:4}, we have the max of \(P_jP_k\) is:
+	\begin{equation}
+		d_{P_j,P_k} \leq \sqrt{(r)^2 + (r)^2 - 2 \times r \times r\times \cos(90^\circ)} \leq \sqrt{2(r)^2} \leq \sqrt{(2)}r \leq \sqrt{2} \quad (\text{since }r = 1)
+	\end{equation}
+
+	However, the maximum value is only achieved if and only if all the points are on the edge and 90 degrees from each other (the points are \(A, B, C, D\) in figure \ref{Ex:4}), since only 4 positions are possible and there are 5 points, applying the pigeonhole principle one more time tells that it will be impossible to have all 5 distinct points on edge and 90 degrees away from each other
+
+	Thus 
+	\[\exists {p_j}, {p_k} \in P: (j \neq k) \a (d) < \sqrt{2}\quad\blacksquare\]
+	
+	
+	\end{enumerate}
+\end{document}
+
+
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
